@@ -28,6 +28,36 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'as'=>'home'
     ]);
 
+    Route::get('/category',[
+        'uses'=>'CategoryController@index',
+        'as'=>'category'
+    ]);
+
+    Route::get('/category/create',[
+        'uses'=>'CategoryController@create',
+        'as'=>'category.create'
+    ]);
+
+    Route::post('/category/store',[
+        'uses'=>'CategoryController@store',
+        'as'=>'category.store'
+    ]);
+
+    Route::get('/category/edit/{id}',[
+        'uses'=>'CategoryController@edit',
+        'as'=>'category.edit'
+    ]);
+
+    Route::get('/category/destroy/{id}',[
+        'uses'=>'CategoryController@destroy',
+        'as'=>'category.destroy'
+    ]);
+
+    Route::post('category/update/{id}',[
+        'uses'=>'CategoryController@update',
+        'as'=>'category.update'
+    ]);
+
     Route::get('/post/create',[
         'uses'=>'PostsController@create',
         'as'=>'posts.create'
