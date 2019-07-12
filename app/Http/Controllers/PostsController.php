@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tags;
 class PostsController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class PostsController extends Controller
         {
             return redirect()->route('category.create');
         }
-        return view('admin.posts.create')->with('category',Category::all());
+        return view('admin.posts.create')->with('category',Category::all())->with('tags',Tags::all());
     }
 
     /**
@@ -39,8 +40,8 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        //dd($request->tags);
         $this->validate($request,[
             'title'=>'required',
             'content'=>'required',
@@ -61,7 +62,8 @@ class PostsController extends Controller
             'featured'=>'uploads/posts/' . $featuerd_new_name,
             'slug'=>str_slug($request->title)
         ]);
-
+        
+        $post->tags()->attach($request->tags);
         return redirect()->back();
     }
 
@@ -86,7 +88,8 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('admin.posts.edit')->with('posts',$post)->with('category',Category::all());
+        return view('admin.posts.edit')->with('posts',$post)->with('category',Category::all())
+        ->with('tags',Tags::all());
     }
 
     /**
@@ -120,6 +123,8 @@ class PostsController extends Controller
         $post->category_id = $request->category_id;
 
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts');
 

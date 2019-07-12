@@ -27,7 +27,7 @@
                     <textarea id="form10" name='content' class="md-textarea form-control" rows="3" required></textarea>
                     <label for="form10">Post Content</label>
                 </div>
-
+                <div class="md-form">
                 <select name='category_id' class="browser-default custom-select">
                 <option selected>Choose Post Category</option>
 
@@ -35,6 +35,14 @@
                     <option value="{{$cat->id}}">{{$cat->name}}</option>
                     @endforeach
                 </select>
+                </div>
+                <div class="form-group form-check">
+                    <label>Choose Post Tags:</label><br>
+                    @foreach($tags as $tag)
+                    <label class="form-check-label" for="exampleCheck1"><input value='{{$tag->id}}' name='tags[]'  type="checkbox" class="form-check-input" id="exampleCheck1">{{$tag->tag}}</label>
+                    <br>
+                    @endforeach
+                </div>
 
                 <div class="md-form">
                     <input type="file" name='featured' id="form1" class="form-control" required>

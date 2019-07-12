@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
+Route::get('/test',function(){
+    return App\Tags::find(4)->posts;
+});
+*/
 Route::get('/', function () {
     return view('welcome');
 });
@@ -101,5 +105,34 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
         'uses'=>'PostsController@index',
         'as'=>'posts'
     ]);
+    // tags route
+    Route::get('tags',[
+        'uses'=>'TagController@index',
+        'as'=>'tags'
+    ]);
+    Route::get('tags/edit/{id}',[
+        'uses'=>'TagController@edit',
+        'as'=>'tags.edit'
+    ]);
+
+    Route::get('tags/create',[
+        'uses'=>'TagController@create',
+        'as'=>'tags.create'
+    ]);
+    
+    Route::post('tags/store',[
+        'uses'=>'TagController@store',
+        'as'=>'tags.store'
+    ]);
+
+    Route::post('tags/update/{id}',[
+        'uses'=>'TagController@update',
+        'as'=>'tags.update'
+    ]);
+    Route::get('tags/destroy/{id}',[
+        'uses'=>'TagController@destroy',
+        'as'=>'tags.destroy'
+    ]);
+
 });
 

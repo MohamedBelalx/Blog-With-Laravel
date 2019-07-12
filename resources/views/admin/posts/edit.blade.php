@@ -31,9 +31,28 @@
                 <select name='category_id' class="browser-default custom-select">
 
                     @foreach($category as $cat)
-                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    <option value="{{$cat->id}}"
+                        @if($posts->category->id == $cat->id)
+                        selected
+                        @endif
+                    >{{$cat->name}}</option>
                     @endforeach
                 </select>
+
+                <div class="form-group form-check">
+                    <label>Choose Post Tags:</label><br>
+                    @foreach($tags as $tag)
+                    <label class="form-check-label" for="exampleCheck1"><input value='{{$tag->id}}' name='tags[]'  type="checkbox" class="form-check-input" id="exampleCheck1"
+                        @foreach($posts->tags as $t)
+                            @if($tag->id == $t->id)
+                            checked
+                            @endif
+                        @endforeach
+                    >{{$tag->tag}}</label>
+                    <br>
+                    @endforeach
+                </div>
+
 
                 <div class="md-form">
                     <input type="file" name='featured' id="form1" class="form-control" required>

@@ -4,7 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tags extends Model
+class Tags extends Model
 {
-    //
+    protected $fillable = ['tag'];
+    public function posts()
+    {
+        return $this->belongsToMany('App\Post');
+    }
 }
