@@ -18,7 +18,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha256-ENFZrbVzylNbgnXx0n3I1g//2WeO47XxoPe0vkp3NC8=" crossorigin="anonymous" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -90,6 +90,14 @@
                                 <a href="{{route('category')}}">Category</a>
                             </li>
 
+                            <li class="list-group-item">
+                                <a href="{{route('posts')}}">Posts</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a href="{{route('posts.trashed')}}">Restore Posts</a>
+                            </li>
+
 
                             <li class="list-group-item">
                                 <a href="{{route('category.create')}}">Add Category</a>
@@ -117,5 +125,6 @@
 <!-- Bootstrap core JavaScript -->
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
 </body>
 </html>

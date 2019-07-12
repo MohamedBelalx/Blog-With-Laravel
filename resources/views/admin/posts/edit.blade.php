@@ -14,22 +14,21 @@
     </ul>
 @endif
     <div class="card">
-        <div class="card-header">Create New Post</div>
+        <div class="card-header">Edit {{$posts->title}} Post</div>
         <div class="card-body">
-            <form action="{{route('post.store')}}" method='post' enctype='multipart/form-data'>
+            <form action="{{route('post.update',['id'=>$posts->id])}}" method='post' enctype='multipart/form-data'>
                 {{csrf_field()}}
 
                 <div class="md-form">
-                    <input type="text" id="form1" name='title' class="form-control" required>
+                    <input type="text" id="form1" name='title' class="form-control" value="{{$posts->title}}" required>
                     <label for="form1">Post Title</label>
                 </div>
                 <div class="md-form">
-                    <textarea id="form10" name='content' class="md-textarea form-control" rows="3" required></textarea>
+                    <textarea id="form10" name='content' class="md-textarea form-control" rows="3" required>{{$posts->content}}</textarea>
                     <label for="form10">Post Content</label>
                 </div>
 
                 <select name='category_id' class="browser-default custom-select">
-                <option selected>Choose Post Category</option>
 
                     @foreach($category as $cat)
                     <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -41,7 +40,7 @@
                 </div>
 
                 <div class="md-form">
-                    <button type="submit" class="btn btn-cyan">Save Post</button>
+                    <button type="submit" class="btn btn-cyan">Update Post</button>
                 </div>
 
             </form>
